@@ -1,3 +1,5 @@
+import os
+
 import Config
 import Controllers.UserController
 
@@ -13,4 +15,7 @@ Config.api.add_resource(Controllers.UserController.AuthenticateUser, '/Authentic
 Config.api.add_resource(Controllers.UserController.GetAllUsers, '/GetAllItems')
 
 if __name__ == '__main__':
-    Config.app.run(debug=True)
+    # Config.app.run(debug=True)
+    # Bind to PORT if defined, otherwise default to 5000.
+    port = int(os.environ.get('PORT', 5000))
+    Config.app.run(host='0.0.0.0', port=port)
