@@ -1,16 +1,18 @@
-# /usr/bin/env python
-# Download the twilio-python library from http://twilio.com/docs/libraries
-from twilio.rest import TwilioRestClient
-
+import requests
+import urllib
 
 class SMS:
 
     @staticmethod
-    def send():
-        # Find these values at https://twilio.com/user/account
-        account_sid = "AC32de19de1f5d9b4e6c0865377d70cd92"
-        auth_token = "4c9865a86c351d3b7141a2418e0d30ed"
-        client = TwilioRestClient(account_sid, auth_token)
+    def send(phone_number, ver_code):
+        message = "کاربر عزیز میدون،" + "\n"\
+                  + "این کد برای تایید شماره تلفن شما است:" + "\n" + str(ver_code)
+        message = urllib.parse.quote_plus(message)
 
-        message = client.messages.create(to="+989127258541", from_="+16787524928",
-                                             body="Hello there!")
+        request = requests.post("https://api.kavenegar.com/v1/"
+                                + "2B2F762F45696A3043654478734C4A4D4F4E4E4138773D3D"
+                                + "/sms/send.json"
+                                + "?receptor=" + str(phone_number)
+                                + "&message=" + message
+                                )
+        print(str(request.text))
