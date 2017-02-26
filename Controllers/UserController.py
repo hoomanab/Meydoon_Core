@@ -38,7 +38,7 @@ class CreateUser(Resource):
             # _user_picture = content['user_picture']
             # _has_shop = content['has_shop']
 
-            _user_email = ""
+            _user_email = None
             _user_email_verification_code = 0
             _user_email_verfied = False
             _user_password = ""
@@ -46,7 +46,7 @@ class CreateUser(Resource):
             _user_regiseration_date = time.strftime("%c")
             _user_phone_number_verification_code = 0
             _user_phone_number_verified = False
-            _user_telegram_id = ""
+            _user_telegram_id = None
             _user_country = ""
             _user_province = ""
             _user_city = ""
@@ -256,14 +256,14 @@ class VerifyUser(Resource):
             # _user_picture = content['user_picture']
             # _has_shop = content['has_shop']
 
-            _user_email = ""
+            _user_email = None
             _user_email_verification_code = 0
             _user_email_verfied = False
             _user_password = ""
             _user_name = ""
             _user_regiseration_date = time.strftime("%c")
             _user_phone_number_verified = False
-            _user_telegram_id = ""
+            _user_telegram_id = None
             _user_country = ""
             _user_province = ""
             _user_city = ""
