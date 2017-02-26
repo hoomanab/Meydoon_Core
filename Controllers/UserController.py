@@ -95,6 +95,8 @@ class CreateUser(Resource):
                         conn.close()
                         # send it via sms
                         Utilities.Communication.send_sms.SMS.send()
+                        return {'StatusCode': '200', 'Message': "user save in inactive mode with profile info and "
+                                                                "verification code created and smsed to."}
                     else:
                         # problem in saving phone number verification code
                         return {'StatusCode': '1000', 'Message': str(data[0])}
