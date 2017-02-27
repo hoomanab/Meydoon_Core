@@ -45,7 +45,7 @@ class CreateUser(Resource):
             _user_email_verfied = False
             _user_password = ""
             _user_name = ""
-            _user_regiseration_date = time.strftime("%c")
+            _user_regiseration_date = time.strftime('%Y-%m-%d %H:%M:%S')
             _user_phone_number_verification_code = 0
             _user_phone_number_verified = False
             _user_telegram_id = None
@@ -59,7 +59,7 @@ class CreateUser(Resource):
             _is_Banned = False
             _user_picture = None
             _has_shop = False
-            _user_initial_reg_date = time.strftime("%c")
+            _user_initial_reg_date = time.strftime('%Y-%m-%d %H:%M:%S')
 
             #check if the phone number exists already or not
             conn = connection.opencooncetion()
@@ -265,7 +265,7 @@ class VerifyUser(Resource):
             _user_email_verfied = False
             _user_password = ""
             _user_name = ""
-            _user_regiseration_date = time.strftime("%c")
+            _user_regiseration_date = time.strftime('%Y-%m-%d %H:%M:%S')
             _user_phone_number_verified = False
             _user_telegram_id = None
             _user_country = ""
@@ -278,7 +278,7 @@ class VerifyUser(Resource):
             _is_Banned = False
             _user_picture = None
             _has_shop = False
-            _user_initial_reg_date = time.strftime("%c")
+            _user_initial_reg_date = time.strftime('%Y-%m-%d %H:%M:%S')
 
             conn = connection.opencooncetion()
             cursor = conn.cursor()
@@ -291,7 +291,7 @@ class VerifyUser(Resource):
                 conn.close()
 
                 # now that the user has passed the verification activate its account and save its registration date
-                _user_regiseration_date = time.strftime("%c")
+                _user_regiseration_date = time.strftime('%Y-%m-%d %H:%M:%S')
                 _is_Active = True
                 _is_Banned = False
                 _user_picture = None
