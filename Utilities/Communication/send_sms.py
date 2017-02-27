@@ -7,8 +7,7 @@ class SMS:
 
     @staticmethod
     def send(phone_number, ver_code):
-        message = "کاربر عزیز میدون،" + "\n"\
-                  + "این کد برای تایید شماره تلفن شما است:" + "\n" + str(ver_code)
+        message = "کاربر عزیز میدون،" + "\n" + "این کد برای تایید شماره تلفن شما است:" + "\n" + str(ver_code)
         message = urllib.urlencode(message)
 
         request = requests.post("https://api.kavenegar.com/v1/"
@@ -17,4 +16,4 @@ class SMS:
                                 + "?receptor=" + str(phone_number)
                                 + "&message=" + message
                                 )
-        print(str(request.text))
+        # print(str(request.text))
