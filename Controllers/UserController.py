@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 from flask_restful import request, Resource
 import Config
 import time
