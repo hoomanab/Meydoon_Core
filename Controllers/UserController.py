@@ -8,7 +8,6 @@ import random
 import Utilities.Communication.send_sms
 
 
-
 connection = Config.ConnectionManager.MySQLConnection()
 
 
@@ -20,32 +19,14 @@ class CreateUser(Resource):
             content = request.get_json(silent=True)
 
             _user_phone_number = content['user_phone_number']
-            # _user_email = content['user_email']
-            # _user_email_verification_code = content['user_email_verification_code']
-            # _user_email_verfied = content['user_email_verfied']
-            # _user_password = content['user_password']
-            # _user_name = content['user_name']
-            # _user_regiseration_date = content['user_regiseration_date']
-            # _user_phone_number_verification_code = content['user_phone_number_verification_code']
-            # _user_phone_number_verified = content['user_phone_number_verified']
-            # _user_telegram_id = content['user_telegram_id']
-            # _user_country = content['user_country']
-            # _user_province = content['user_province']
-            # _user_city = content['user_city']
-            # _user_address1 = content['user_address1']
-            # _user_address2 = content['user_address2']
-            # _user_zipcode = content['user_zipcode']
-            # _is_Active = content['is_Active']
-            # _is_Banned = content['is_Banned']
-            # _user_picture = content['user_picture']
-            # _has_shop = content['has_shop']
 
             _user_email = None
             _user_email_verification_code = 0
             _user_email_verfied = False
             _user_password = ""
             _user_name = ""
-            _user_regiseration_date = time.strftime('%Y-%m-%d %H:%M:%S')
+            _user_initial_reg_date = time.strftime('%Y-%m-%d %H:%M:%S')
+            _user_regiseration_date = None
             _user_phone_number_verification_code = 0
             _user_phone_number_verified = False
             _user_telegram_id = None
@@ -59,9 +40,9 @@ class CreateUser(Resource):
             _is_Banned = False
             _user_picture = None
             _has_shop = False
-            _user_initial_reg_date = time.strftime('%Y-%m-%d %H:%M:%S')
 
-            #check if the phone number exists already or not
+
+            # check if the phone number exists already or not
             conn = connection.opencooncetion()
             cursor = conn.cursor()
             cursor.callproc('checkPhoneNumberExistence', (_user_phone_number,))
@@ -70,7 +51,21 @@ class CreateUser(Resource):
             if len(data) > 0:
                 conn.commit()
                 conn.close()
-                return {'StatusCode': '200', 'Message': 'Phone number is redundant'}
+                # return {'StatusCode': '200', 'Message': 'Phone number is redundant'}
+                # user is trying to login with another (mobile) device after it has completed
+                # initial signup and verification
+                # or user is returning back after entering its phone number but before completing
+                # the verification process
+                # here verification code must be resent and after successful verification
+                # a cookie must be generated for the user on the new device or
+                # a cookie must be generated for the user main device after initial abortive signup
+                # if user isVerified field is true then its a user that is currently using
+                # one of its other devices. send verification code to its main device
+                # and after successful verification save a cookie on this device for this user
+                # if the user is not verified then the user is coming back after an abortive initial signup
+                # send a verification code to its mobile device and after successful verification save a
+                # cookie for the user on his/her device.
+
             else:
                 conn = connection.opencooncetion()
                 cursor = conn.cursor()
@@ -86,7 +81,7 @@ class CreateUser(Resource):
                 if len(data) is 0:
                     conn.commit()
                     conn.close()
-                    _user_phone_number_verification_code = generateverificationcode()
+                    _user_phone_number_verification_code = generateverificationcode(_user_initial_reg_date, _user_phone_number)
                     # save verification code
                     conn = connection.opencooncetion()
                     cursor = conn.cursor()
@@ -96,14 +91,16 @@ class CreateUser(Resource):
                         conn.commit()
                         conn.close()
                         # send it via sms
-                        Utilities.Communication.send_sms.SMS.send(_user_phone_number, _user_phone_number_verification_code)
-                        return {'StatusCode': '200', 'Message': "user save in inactive mode with profile info and "
-                                                                "verification code created and smsed to."}
+                        Utilities.Communication.send_sms.SMS.send(_user_phone_number,
+                                                                  _user_phone_number_verification_code)
+                        return {'StatusCode': '200', 'Message': "user saved in inactive mode without "
+                                                                "profile data and "
+                                                                "verification code generated and sms-ed to."}
                     else:
                         # problem in saving phone number verification code
                         return {'StatusCode': '1000', 'Message': str(data[0])}
                 else:
-                    # problem in inserting user data in inactive mode
+                    # problem in inserting user data in inactive mode into database
                     return {'StatusCode': '1000', 'Message': str(data[0])}
 
         except Exception as e:
@@ -112,7 +109,7 @@ class CreateUser(Resource):
             # return {'StatusCode': '1000', 'Message': str(data[0])}
 
 
-def generateverificationcode():
+def generateverificationcode(now, phoneNumber):
 
     verification_code = []
     digit_count = 6
@@ -128,15 +125,15 @@ def generateverificationcode():
 
     conn = connection.opencooncetion()
     cursor = conn.cursor()
-    cursor.callproc('checkVerificationCodeExistenceandValidity', (int(strvercode), time.strftime("%c")))
-    data = cursor.fetchall()
+    cursor.execute('call checkVerificationCodeExistenceandValidity(\'' + strvercode + '\', \'' + str(now) + '\', \'' + str(phoneNumber) + '\');')
+    data = cursor.fetchone()
 
-    if len(data) is 0:
+    if data[0] == 0:
         conn.commit()
         conn.close()
         return int(strvercode)
     else:
-        generateverificationcode()
+        generateverificationcode(now, phoneNumber)
 
 # def executequery(self, procname , arguments ):
 #
@@ -240,80 +237,61 @@ class VerifyUser(Resource):
 
             _user_phone_number = content['user_phone_number']
             _user_phone_number_verification_code = content['user_phone_number_verification_code']
-            # _user_email = content['user_email']
-            # _user_email_verification_code = content['user_email_verification_code']
-            # _user_email_verfied = content['user_email_verfied']
-            # _user_password = content['user_password']
-            # _user_name = content['user_name']
-            # _user_regiseration_date = content['user_regiseration_date']
-            # _user_phone_number_verification_code = content['user_phone_number_verification_code']
-            # _user_phone_number_verified = content['user_phone_number_verified']
-            # _user_telegram_id = content['user_telegram_id']
-            # _user_country = content['user_country']
-            # _user_province = content['user_province']
-            # _user_city = content['user_city']
-            # _user_address1 = content['user_address1']
-            # _user_address2 = content['user_address2']
-            # _user_zipcode = content['user_zipcode']
-            # _is_Active = content['is_Active']
-            # _is_Banned = content['is_Banned']
-            # _user_picture = content['user_picture']
-            # _has_shop = content['has_shop']
 
             _user_email = None
-            _user_email_verification_code = 0
+            _user_email_verification_code = None
             _user_email_verfied = False
-            _user_password = ""
-            _user_name = ""
+            _user_password = None
+            _user_name = None
             _user_regiseration_date = time.strftime('%Y-%m-%d %H:%M:%S')
-            _user_phone_number_verified = False
             _user_telegram_id = None
-            _user_country = ""
-            _user_province = ""
-            _user_city = ""
-            _user_address1 = ""
-            _user_address2 = ""
-            _user_zipcode = 0
-            _is_Active = False
-            _is_Banned = False
-            _user_picture = None
-            _has_shop = False
-            _user_initial_reg_date = time.strftime('%Y-%m-%d %H:%M:%S')
+            _user_country = None
+            _user_province = None
+            _user_city = None
+            _user_address1 = None
+            _user_address2 = None
+            _user_zipcode = None
 
             conn = connection.opencooncetion()
             cursor = conn.cursor()
-            cursor.callproc('checkVerificationCodeExistenceandValidity', (int(_user_phone_number_verification_code), time.strftime("%c")))
-            data = cursor.fetchall()
+            cursor.execute(
+                'call checkVerificationCodeExistenceandValidity(\'' + _user_phone_number_verification_code + '\', \'' + str(_user_regiseration_date) + '\', \'' + str(
+                    _user_phone_number) + '\');')
+            data = cursor.fetchone()
 
-            if len(data) > 0:
+            if data[0] == 1:
                 # verification code is entered correctly and is still valid
                 conn.commit()
                 conn.close()
 
-                # now that the user has passed the verification activate its account and save its registration date
-                _user_regiseration_date = time.strftime('%Y-%m-%d %H:%M:%S')
+                # now that the user has passed the verification successfully, activate its account
+                # and save its registration date
                 _is_Active = True
                 _is_Banned = False
                 _user_picture = None
                 _has_shop = False
+                _user_phone_number_verified = True
 
                 conn = connection.opencooncetion()
                 cursor = conn.cursor()
                 cursor.callproc('updateNewUserAfterVerification',
                                 (_user_email, _user_email_verification_code, _user_email_verfied,
                                  _user_password, _user_name, _user_regiseration_date,
-                                 _user_phone_number,
-                                 _user_phone_number_verification_code, _user_phone_number_verified,
+                                 _user_phone_number, _user_phone_number_verification_code, _user_phone_number_verified,
                                  _user_telegram_id, _user_country, _user_province, _user_city,
                                  _user_address1, _user_address2, _user_zipcode, _is_Active, _is_Banned,
-                                 _user_picture, _has_shop, _user_initial_reg_date))
+                                 _user_picture, _has_shop))
 
                 data = cursor.fetchall()
 
                 if len(data) is 0:
                     conn.commit()
                     conn.close()
-                    return {'StatusCode': '200', 'Message': 'user verified and activated'}
+                    return {'error': '0',
+                            'StatusCode': '200',
+                            'Message': 'user verified and activated',
+                            'user_phone_number': '\'' + str(_user_phone_number) + '\'',
+                            'user_name': '\'' + str(_user_name) + '\''}
                 else:
                     # problem in updating currently verified and activated user
                     return {'StatusCode': '1000', 'Message': str(data[0])}
