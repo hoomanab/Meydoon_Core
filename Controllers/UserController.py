@@ -420,10 +420,10 @@ class VerifyUser(Resource):
                         return {'error': '0',
                                 'StatusCode': '200',
                                 'Message': 'user verified and activated for the first time',
-                                'user_id': '\'' + str(_user_id[0][0]) + '\'',
-                                'user_phone_number': '\'' + str(_user_phone_number) + '\'',
-                                'user_name': '\'' + str(_user_name) + '\'',
-                                'has_shop': '\'' + str(_has_shop) + '\''}
+                                'user_id': str(_user_id[0][0]),
+                                'user_phone_number': str(_user_phone_number),
+                                'user_name': str(_user_name),
+                                'has_shop': str(_has_shop)}
                     else:
                         # this transaction can be omitted until something else reaches to my mind!
                         cursor.callproc('updateUserAfterVerification',
@@ -441,10 +441,10 @@ class VerifyUser(Resource):
                         return {'error': '0',
                                 'StatusCode': '200',
                                 'Message': 'user verified and activated once again',
-                                'user_id': '\'' + str(_user_id[0][0]) + '\'',
-                                'user_phone_number': '\'' + str(_user_phone_number) + '\'',
-                                'user_name': '\'' + str(_user_name) + '\'',
-                                'has_shop': '\'' + str(_has_shop) + '\''}
+                                'user_id':  str(_user_id[0][0]),
+                                'user_phone_number':  str(_user_phone_number),
+                                'user_name': str(_user_name),
+                                'has_shop':  str(_has_shop) }
                 except Exception as e:
                     # problem in updating currently verified and activated user
                     return {'error': '1',
@@ -460,4 +460,4 @@ class VerifyUser(Resource):
         except Exception as e:
             return {'error': '1',
                     'StatusCode': '1000',
-                    'Message': '\'' + str(e) + '\''}
+                    'Message': str(e)}
