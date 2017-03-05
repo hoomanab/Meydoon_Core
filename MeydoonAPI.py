@@ -15,7 +15,7 @@ def index():
 
 Config.api.add_resource(Controllers.UserController.CreateUser, '/CreateUser')
 Config.api.add_resource(Controllers.UserController.AuthenticateUser, '/AuthenticateUser')
-Config.api.add_resource(Controllers.UserController.GetAllUsers, '/GetAllItems')
+Config.api.add_resource(Controllers.UserController.GetAllUsers, '/GetAllUsers')
 Config.api.add_resource(Controllers.UserController.VerifyUser, '/VerifyUser')
 Config.api.add_resource(Controllers.ProductController.SaveProductInfo, '/SaveProduct')
 Config.api.add_resource(Controllers.HomeFeedController.GetGuestUserHomeFeed, '/GetGuestFeed')
