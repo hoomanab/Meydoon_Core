@@ -438,13 +438,24 @@ class VerifyUser(Resource):
                         _user_id = cursor.fetchall()
                         conn.commit()
                         conn.close()
-                        return {'error': '0',
-                                'StatusCode': '200',
-                                'Message': 'user verified and activated once again',
-                                'user_id':  str(_user_id[0][0]),
-                                'user_phone_number':  str(_user_phone_number),
-                                'user_name': str(_user_name),
-                                'has_shop':  str(_has_shop) }
+
+                        # retrieve shop_id from database
+                        conn = connection.opencooncetion()
+                        cursor = conn.cursor()
+                        cursor.callproc('GetshopIDbyOwnerID', (_user_id,))
+                        data = cursor.fetchall()
+                        if len(data) > 0:
+                            return {'error': '0',
+                                    'StatusCode': '200',
+                                    'Message': 'user verified and activated once again',
+                                    'user_id': str(_user_id[0][0]),
+                                    'user_phone_number': str(_user_phone_number),
+                                    'user_name': str(_user_name), 'shop_id': data[0][0]}
+                        else:
+                            # problem in retrieving user id from database
+                            return {'error': '0', 'StatusCode': '200',
+                                    'shop_id': None,
+                                    'Message': "No shop is defined for this user."}
                 except Exception as e:
                     # problem in updating currently verified and activated user
                     return {'error': '1',
