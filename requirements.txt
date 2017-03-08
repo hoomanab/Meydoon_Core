@@ -16,3 +16,5 @@ requests==2.13.0
 six==1.10.0
 twilio==5.7.0
 virtualenv==15.1.0
+Pillow==3.4.2
+paramiko==2.1.2

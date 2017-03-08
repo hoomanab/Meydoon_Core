@@ -26,9 +26,12 @@ class GetshopIDbyOwnerID(Resource):
             cursor.callproc('GetshopIDbyOwnerID', (_user_id,))
             data = cursor.fetchall()
             if len(data) > 0:
+                conn.commit()
+                conn.close()
                 return {'error': '0', 'StatusCode': '200', 'shop_id': data[0][0]}
             else:
                 # problem in retrieving user id from database
+                conn.close()
                 return {'error': '0', 'StatusCode': '200',
                         'shop_id': None,
                         'Message': "No shop is defined for this user."}

@@ -4,6 +4,7 @@ import Config
 import Controllers.UserController
 import Controllers.ProductController
 import Controllers.ShopController
+import Utilities.FileManagement.FileManager
 import Controllers.HomeFeedController
 
 connection = Config.ConnectionManager.MySQLConnection()
@@ -17,6 +18,7 @@ Config.api.add_resource(Controllers.UserController.CreateUser, '/CreateUser')
 Config.api.add_resource(Controllers.UserController.AuthenticateUser, '/AuthenticateUser')
 Config.api.add_resource(Controllers.UserController.GetAllUsers, '/GetAllUsers')
 Config.api.add_resource(Controllers.UserController.VerifyUser, '/VerifyUser')
+Config.api.add_resource(Utilities.FileManagement.FileManager.EncodeFile, '/EncodeFile')
 Config.api.add_resource(Controllers.ProductController.SaveProductInfo, '/SaveProduct')
 Config.api.add_resource(Controllers.HomeFeedController.GetGuestUserHomeFeed, '/GetGuestFeed')
 Config.api.add_resource(Controllers.ShopController.GetshopIDbyOwnerID, '/GetShopId')
