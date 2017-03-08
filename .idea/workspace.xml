@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72db51f3-bb08-4c6d-b7ed-ea46d34a895a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/ProductController.py" afterPath="$PROJECT_DIR$/Controllers/ProductController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/ShopController.py" afterPath="$PROJECT_DIR$/Controllers/ShopController.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MeydoonAPI.py" afterPath="$PROJECT_DIR$/MeydoonAPI.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Utilities/FileManagement/FileManager.py" afterPath="$PROJECT_DIR$/Utilities/FileManagement/FileManager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,13 +48,13 @@
       <file leaf-file-name="FileManager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Utilities/FileManagement/FileManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+            <state relative-caret-position="281">
+              <caret line="296" column="3" lean-forward="true" selection-start-line="296" selection-start-column="3" selection-end-line="296" selection-end-column="3" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#3921#4753#0" expanded="false" />
-                <element signature="e#4753#4774#0" expanded="false" />
-                <marker date="1489008848403" expanded="false" signature="5628:10047" ph="..." />
+                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#3978#4810#0" expanded="false" />
+                <element signature="e#4810#4831#0" expanded="false" />
+                <marker date="1489009818769" expanded="false" signature="5685:10104" ph="..." />
               </folding>
             </state>
           </provider>
@@ -526,7 +521,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22617246" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -620,7 +615,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Utilities/FileManagement/FileManager.py</url>
-          <line>139</line>
+          <line>142</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -996,13 +991,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Utilities/FileManagement/FileManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+        <state relative-caret-position="281">
+          <caret line="296" column="3" lean-forward="true" selection-start-line="296" selection-start-column="3" selection-end-line="296" selection-end-column="3" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#3921#4753#0" expanded="false" />
-            <element signature="e#4753#4774#0" expanded="false" />
-            <marker date="1489008848403" expanded="false" signature="5628:10047" ph="..." />
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#3978#4810#0" expanded="false" />
+            <element signature="e#4810#4831#0" expanded="false" />
+            <marker date="1489009818769" expanded="false" signature="5685:10104" ph="..." />
           </folding>
         </state>
       </provider>

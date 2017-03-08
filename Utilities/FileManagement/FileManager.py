@@ -1,4 +1,3 @@
-import win32api
 import os
 import base64
 from flask_restful import Resource
@@ -7,10 +6,11 @@ import io
 from fabric.api import run, put, env
 from fabric.contrib.files import exists
 from PIL import Image
+'''
 import glob
 import paramiko
 import hashlib
-
+'''
 
 class Manager:
 
@@ -51,7 +51,7 @@ class Manager:
             if not is_accessible:
                 os.mkdir(path)
 
-        elif os.name == 'nt':
+        '''elif os.name == 'nt':
             drives = win32api.GetLogicalDriveStrings()
             drives = drives.split('\000')[:-1]
             for drive in drives:
@@ -62,7 +62,7 @@ class Manager:
                     # if you don't create the path
                     if not is_accessible:
                         os.mkdir(path)
-
+            '''
         # base on our business rules the subpath will be determined.
         if os.name == 'posix':
             path += '/products/'
@@ -81,7 +81,7 @@ class Manager:
             # if you don't create the path
             if not is_accessible:
                 os.mkdir(path)
-
+        '''
         elif os.name == 'nt':
             path += '\\products\\'
 
@@ -98,7 +98,7 @@ class Manager:
             # if you don't create the path
             if not is_accessible:
                 os.mkdir(path)
-
+        '''
         # check now if the path exist
         os.chdir(path)
 
@@ -113,14 +113,17 @@ class Manager:
         # append picture file name and extension
         if os.name == 'posix':
             path += file_name + file_extension
+        '''
         elif os.name == 'nt':
             path += file_name + file_extension
+        '''
 
         image.save(path)
 
         # first create the necessary directory structure on the remote server
         Manager.set_host_config('31.184.132.114', 'root', 'xaas@32n53e')
         remote_path = '/home/meydoon_image_store/products/' + str(shop_Id) + '/'
+
         if not exists(remote_path):
             Manager.mkdir(remote_path)
 
@@ -128,7 +131,7 @@ class Manager:
         Manager.copytoremote(path, remote_path)
         # os.system("scp " + path + 'root@31.184.132.114:/home/meydoon_image_store/products/'
         #          + str(shop_Id) + '/' + file_name + file_extension)
-        #RemoteFileManager.copy()
+        # RemoteFileManager.copy()
 
         return remote_path
 
