@@ -6,11 +6,10 @@ import io
 from fabric.api import run, put, env
 from fabric.contrib.files import exists
 from PIL import Image
-'''
 import glob
 import paramiko
 import hashlib
-'''
+
 
 class Manager:
 
@@ -51,18 +50,14 @@ class Manager:
             if not is_accessible:
                 os.mkdir(path)
 
-        '''elif os.name == 'nt':
-            drives = win32api.GetLogicalDriveStrings()
-            drives = drives.split('\000')[:-1]
-            for drive in drives:
-                if str(drive).lower() != 'c':
-                    path += str(drive).capitalize() + '\\Meydoon_image_store'
-                    is_accessible = os.access(path, os.F_OK)
+        elif os.name == 'nt':
+            path += 'E:\\Meydoon_image_store'
+            is_accessible = os.access(path, os.F_OK)
 
-                    # if you don't create the path
-                    if not is_accessible:
-                        os.mkdir(path)
-            '''
+            # if you don't create the path
+            if not is_accessible:
+                os.mkdir(path)
+
         # base on our business rules the subpath will be determined.
         if os.name == 'posix':
             path += '/products/'
@@ -81,7 +76,7 @@ class Manager:
             # if you don't create the path
             if not is_accessible:
                 os.mkdir(path)
-        '''
+
         elif os.name == 'nt':
             path += '\\products\\'
 
@@ -98,7 +93,7 @@ class Manager:
             # if you don't create the path
             if not is_accessible:
                 os.mkdir(path)
-        '''
+
         # check now if the path exist
         os.chdir(path)
 
@@ -113,16 +108,113 @@ class Manager:
         # append picture file name and extension
         if os.name == 'posix':
             path += file_name + file_extension
-        '''
+
         elif os.name == 'nt':
             path += file_name + file_extension
-        '''
+
 
         image.save(path)
 
         # first create the necessary directory structure on the remote server
         Manager.set_host_config('31.184.132.114', 'root', 'xaas@32n53e')
         remote_path = '/home/meydoon_image_store/products/' + str(shop_Id) + '/'
+
+        if not exists(remote_path):
+            Manager.mkdir(remote_path)
+
+        # now send the file to the storage server
+        Manager.copytoremote(path, remote_path)
+        # os.system("scp " + path + 'root@31.184.132.114:/home/meydoon_image_store/products/'
+        #          + str(shop_Id) + '/' + file_name + file_extension)
+        # RemoteFileManager.copy()
+
+        return remote_path
+
+    @staticmethod
+    def uploadshopfile(file_content, shop_Id):
+
+        # first save on disk
+        path = ''
+
+        # set path based on the os on which the python app is running
+        if os.name == 'posix':
+            path += '/home/meydoon_image_store'
+
+            # check if you have access
+            is_accessible = os.access(path, os.F_OK)
+
+            # if you don't create the path
+            if not is_accessible:
+                os.mkdir(path)
+
+        elif os.name == 'nt':
+            path += 'E:\\Meydoon_image_store'
+            is_accessible = os.access(path, os.F_OK)
+
+            # if you don't create the path
+            if not is_accessible:
+                os.mkdir(path)
+
+        # base on our business rules the subpath will be determined.
+        if os.name == 'posix':
+            path += '/shops/'
+            # check if you have access
+            is_accessible = os.access(path, os.F_OK)
+
+            # if you don't create the path
+            if not is_accessible:
+                os.mkdir(path)
+
+            path += str(shop_Id) + '/'
+
+            # check if you have access
+            is_accessible = os.access(path, os.F_OK)
+
+            # if you don't create the path
+            if not is_accessible:
+                os.mkdir(path)
+
+        elif os.name == 'nt':
+            path += '\\shops\\'
+
+            is_accessible = os.access(path, os.F_OK)
+
+            # if you don't create the path
+            if not is_accessible:
+                os.mkdir(path)
+
+            path += str(shop_Id) + '\\'
+
+            is_accessible = os.access(path, os.F_OK)
+
+            # if you don't create the path
+            if not is_accessible:
+                os.mkdir(path)
+
+        # check now if the path exist
+        os.chdir(path)
+
+        # creating the file
+        # decode base64 string and save it on disk
+        imgdata = base64.b64decode(file_content)
+        image = Image.open(io.BytesIO(imgdata))
+
+        file_name = 'shopimage' + str(shop_Id)
+        file_extension = '.jpg'
+
+        # append picture file name and extension
+        if os.name == 'posix':
+            path += file_name + file_extension
+
+        elif os.name == 'nt':
+            path += file_name + file_extension
+
+
+        image.save(path)
+
+        # first create the necessary directory structure on the remote server
+        Manager.set_host_config('31.184.132.114', 'root', 'xaas@32n53e')
+        remote_path = '/home/meydoon_image_store/shops/' + str(shop_Id) + '/'
 
         if not exists(remote_path):
             Manager.mkdir(remote_path)

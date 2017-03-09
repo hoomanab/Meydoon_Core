@@ -423,7 +423,8 @@ class VerifyUser(Resource):
                                 'user_id': str(_user_id[0][0]),
                                 'user_phone_number': str(_user_phone_number),
                                 'user_name': str(_user_name),
-                                'has_shop': str(_has_shop)}
+                                'has_shop': str(_has_shop),
+                                'shop_id': '0'}
                     else:
                         # this transaction can be omitted until something else reaches to my mind!
                         cursor.callproc('updateUserAfterVerification',
@@ -450,11 +451,12 @@ class VerifyUser(Resource):
                                     'Message': 'user verified and activated once again',
                                     'user_id': str(_user_id[0][0]),
                                     'user_phone_number': str(_user_phone_number),
-                                    'user_name': str(_user_name), 'shop_id': data[0][0]}
+                                    'user_name': str(_user_name),
+                                    'shop_id': data[0][0]}
                         else:
                             # problem in retrieving user id from database
                             return {'error': '0', 'StatusCode': '200',
-                                    'shop_id': None,
+                                    'shop_id': '0',
                                     'Message': "No shop is defined for this user."}
                 except Exception as e:
                     # problem in updating currently verified and activated user

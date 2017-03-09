@@ -10,8 +10,6 @@ connection = Config.ConnectionManager.MySQLConnection()
 
 
 class SaveProductInfo(Resource):
-
-    @property
     def post(self):
         try:
             # Parse the arguments
@@ -67,7 +65,9 @@ class SaveProductInfo(Resource):
                     if len(data) == 0:
                         conn.commit()
                         conn.close()
-                        return {'error': '0', 'product_id': str(_product_Id),
+                        return {'error': '0',
+                                'StatusCode': '200',
+                                'product_id': _product_Id,
                                 'Message': 'product info completely saved into database successfully.'}
                     else:
                         conn.close()
