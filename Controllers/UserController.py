@@ -452,12 +452,19 @@ class VerifyUser(Resource):
                                     'user_id': str(_user_id[0][0]),
                                     'user_phone_number': str(_user_phone_number),
                                     'user_name': str(_user_name),
+                                    'has_shop': True,
                                     'shop_id': data[0][0]}
                         else:
-                            # problem in retrieving user id from database
-                            return {'error': '0', 'StatusCode': '200',
+                            # current user has no registered shop in the system
+                            return {'error': '0',
+                                    'StatusCode': '200',
+                                    'Message': "No shop is defined for this user.",
+                                    'user_id': str(_user_id[0][0]),
+                                    'user_phone_number': str(_user_phone_number),
+                                    'user_name': str(_user_name),
+                                    'has_shop': True,
                                     'shop_id': '0',
-                                    'Message': "No shop is defined for this user."}
+                                    }
                 except Exception as e:
                     # problem in updating currently verified and activated user
                     return {'error': '1',
