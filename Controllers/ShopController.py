@@ -33,7 +33,7 @@ class GetshopIDbyOwnerID(Resource):
                 # problem in retrieving user id from database
                 conn.close()
                 return {'error': '0', 'StatusCode': '200',
-                        'shop_id': None,
+                        'shop_id': 0,
                         'Message': "No shop is defined for this user."}
         except Exception as e:
             return {'error': str(e)}
@@ -52,7 +52,6 @@ class SaveShopInfo(Resource):
             _user_id = content['user_id']
             _shop_name = content['shop_name']
             _shop_image = content['shop_image']
-            _shop_category_name = content['shop_category_name']
             _shop_category_id = content['shop_category_id']
             _shop_verified = False
             _shop_description = content['shop_description']

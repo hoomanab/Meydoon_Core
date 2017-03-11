@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="72db51f3-bb08-4c6d-b7ed-ea46d34a895a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/UserController.py" afterPath="$PROJECT_DIR$/Controllers/UserController.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controllers/ShopController.py" afterPath="$PROJECT_DIR$/Controllers/ShopController.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,7 +37,7 @@
       <file leaf-file-name="ProductController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/ProductController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
+            <state relative-caret-position="1173">
               <caret line="73" column="3" lean-forward="false" selection-start-line="73" selection-start-column="3" selection-end-line="73" selection-end-column="3" />
               <folding>
                 <element signature="e#24#67#0" expanded="true" />
@@ -49,7 +49,7 @@
       <file leaf-file-name="HomeFeedController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/HomeFeedController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1615">
+            <state relative-caret-position="1564">
               <caret line="95" column="36" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
@@ -58,24 +58,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShopController.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShopController.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Controllers/ShopController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1224">
-              <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="52" />
+            <state relative-caret-position="17">
+              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
-                <element signature="e#319#1226#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/UserController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="361" column="42" lean-forward="true" selection-start-line="361" selection-start-column="42" selection-end-line="361" selection-end-column="42" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#755#784#0" expanded="false" />
                 <element signature="e#10869#11573#0" expanded="false" />
@@ -177,11 +176,11 @@
         <option value="C:/Python34/Lib/site-packages/fabric/context_managers.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/MeydoonAPI.py" />
-        <option value="$PROJECT_DIR$/Controllers/ShopController.py" />
         <option value="$PROJECT_DIR$/Controllers/ProductController.py" />
         <option value="$PROJECT_DIR$/Controllers/HomeFeedController.py" />
         <option value="$PROJECT_DIR$/Utilities/FileManagement/FileManager.py" />
         <option value="$PROJECT_DIR$/Controllers/UserController.py" />
+        <option value="$PROJECT_DIR$/Controllers/ShopController.py" />
       </list>
     </option>
   </component>
@@ -212,8 +211,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -306,6 +303,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -574,10 +573,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23298033" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23676248" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -985,7 +984,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/ProductController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
+        <state relative-caret-position="1173">
           <caret line="73" column="3" lean-forward="false" selection-start-line="73" selection-start-column="3" selection-end-line="73" selection-end-column="3" />
           <folding>
             <element signature="e#24#67#0" expanded="true" />
@@ -1005,7 +1004,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/HomeFeedController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
+        <state relative-caret-position="1564">
           <caret line="95" column="36" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
           <folding>
             <element signature="e#24#39#0" expanded="true" />
@@ -1022,17 +1021,6 @@
             <element signature="e#6557#7389#0" expanded="false" />
             <element signature="e#7389#7410#0" expanded="false" />
             <marker date="1489089973443" expanded="false" signature="8264:12683" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controllers/ShopController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="52" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-            <element signature="e#319#1226#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1055,8 +1043,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/UserController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="361" column="42" lean-forward="true" selection-start-line="361" selection-start-column="42" selection-end-line="361" selection-end-column="42" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#755#784#0" expanded="false" />
             <element signature="e#10869#11573#0" expanded="false" />
@@ -1064,6 +1052,16 @@
             <element signature="e#12370#12418#0" expanded="false" />
             <element signature="e#13433#14223#0" expanded="false" />
             <element signature="e#14260#15849#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/ShopController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
