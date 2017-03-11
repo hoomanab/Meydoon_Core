@@ -22,8 +22,8 @@ Config.api.add_resource(Utilities.FileManagement.FileManager.EncodeFile, '/Encod
 Config.api.add_resource(Controllers.ProductController.SaveProductInfo, '/SaveProduct')
 Config.api.add_resource(Controllers.ShopController.SaveShopInfo, '/SaveShop')
 Config.api.add_resource(Controllers.HomeFeedController.GetGuestUserHomeFeed, '/GetGuestFeed')
+Config.api.add_resource(Controllers.HomeFeedController.GetRegisteredUserHomeFeed, '/GetRegisteredFeed')
 Config.api.add_resource(Controllers.ShopController.GetshopIDbyOwnerID, '/GetShopId')
-Config.api.add_resource(Controllers.HomeFeedController.GetAuthenticatedUserHomeFeed, '/GetAuthenticatedFeed')
 
 if __name__ == '__main__':
     # Config.app.run(debug=True)
