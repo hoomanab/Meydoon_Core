@@ -4,6 +4,7 @@ import Config
 import Controllers.UserController
 import Controllers.ProductController
 import Controllers.ShopController
+import Controllers.NotificationController
 import Utilities.FileManagement.FileManager
 import Controllers.HomeFeedController
 
@@ -25,6 +26,7 @@ Config.api.add_resource(Controllers.ShopController.GetShopProfile, '/GetShopProf
 Config.api.add_resource(Controllers.HomeFeedController.GetGuestUserHomeFeed, '/GetGuestFeed')
 Config.api.add_resource(Controllers.HomeFeedController.GetRegisteredUserHomeFeed, '/GetRegisteredFeed')
 Config.api.add_resource(Controllers.ShopController.GetshopIDbyOwnerID, '/GetShopId')
+Config.api.add_resource(Controllers.NotificationController.GetShopNotifications, '/GetReceivedNotifications')
 
 if __name__ == '__main__':
     # Config.app.run(debug=True)
